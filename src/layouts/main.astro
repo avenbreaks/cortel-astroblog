@@ -10,7 +10,7 @@ interface Props {
 }
 
 const {
-  title = "Astroblog",
+  title = "cortel blog",
   description = "Blog modern dengan Astro untuk berbagi insight frontend dan web development.",
 } = Astro.props
 ---
@@ -22,6 +22,18 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <script is:inline>
+      const savedTheme = localStorage.getItem("theme")
+      const shouldUseDark =
+        savedTheme === "dark" ||
+        (!savedTheme && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)
+
+      if (shouldUseDark) {
+        document.documentElement.classList.add("dark")
+      } else {
+        document.documentElement.classList.remove("dark")
+      }
+    </script>
   </head>
   <body class="min-h-svh bg-background text-foreground">
     <div class="flex min-h-svh flex-col">
