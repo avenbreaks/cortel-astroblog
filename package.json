@@ -16,10 +16,12 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
+    "@astrojs/vercel": "^9.0.5",
     "@base-ui/react": "^1.3.0",
     "@fontsource-variable/geist-mono": "^5.2.7",
     "@phosphor-icons/react": "^2.1.10",
     "@portabletext/to-html": "^5.0.2",
+    "@sanity/astro": "^3.3.1",
     "@sanity/client": "^7.20.0",
     "@sanity/image-url": "^2.1.0",
     "@sanity/vision": "^5.18.0",

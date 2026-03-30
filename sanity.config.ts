@@ -30,6 +30,7 @@ const singletonPlugin = definePlugin({
 export default defineConfig({
   name: "default",
   title: "astro-blog",
+  basePath: "/studio",
   projectId: publicProjectId,
   dataset: publicDataset,
   plugins: [structureTool(), visionTool(), singletonPlugin()],
