@@ -1,0 +1,28 @@
+---
+import type { BlogPostSummary } from "@/lib/sanity/types"
+import PostMeta from "@/components/blog/PostMeta.astro"
+
+interface Props {
+  post: BlogPostSummary
+}
+
+const { post } = Astro.props
+---
+
+<article class="group border border-border bg-card p-5 transition-colors hover:bg-muted/40">
+  <div class="mb-3">
+    <PostMeta pubDate={post.pubDate} tags={post.tags} readingMinutes={post.readingMinutes} />
+  </div>
+
+  <h2 class="text-base font-semibold tracking-tight text-foreground group-hover:text-primary">
+    <a href={`/blog/${post.slug}`} class="outline-none focus-visible:ring-1 focus-visible:ring-ring">
+      {post.title}
+    </a>
+  </h2>
+
+  <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{post.description}</p>
+
+  <a href={`/blog/${post.slug}`} class="mt-5 inline-flex text-xs font-medium text-primary hover:underline">
+    Baca selengkapnya
+  </a>
+</article>

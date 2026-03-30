@@ -1,0 +1,32 @@
+---
+interface Props {
+  pubDate: Date
+  tags?: string[]
+  readingMinutes?: number
+}
+
+const { pubDate, tags = [], readingMinutes = 5 } = Astro.props
+
+const formattedDate = new Intl.DateTimeFormat("id-ID", {
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+}).format(pubDate)
+---
+
+<div class="flex flex-wrap items-center gap-2 text-[11px] text-muted-foreground">
+  <span>{formattedDate}</span>
+  <span aria-hidden="true">•</span>
+  <span>{readingMinutes} min baca</span>
+
+  {
+    tags.length > 0 && (
+      <>
+        <span aria-hidden="true">•</span>
+        <div class="flex flex-wrap gap-1">
+          {tags.map((tag) => <span class="border border-border/70 px-1.5 py-0.5">#{tag}</span>)}
+        </div>
+      </>
+    )
+  }
+</div>

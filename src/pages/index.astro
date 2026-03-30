@@ -1,17 +1,98 @@
 ---
 import Layout from "@/layouts/main.astro"
+import PostCard from "@/components/blog/PostCard.astro"
 import { Button } from "@/components/ui/button"
+import { getFeaturedPosts } from "@/lib/sanity/posts"
+
+const featuredPosts = await getFeaturedPosts(3)
 ---
 
-<Layout>
-  <div class="flex min-h-svh p-6">
-    <div class="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-      <div>
-        <h1 class="font-medium">Project ready!</h1>
-        <p>You may now add components and start building.</p>
-        <p>We've already added the button component for you.</p>
-        <Button client:load className="mt-2">Button</Button>
+<Layout
+  title="Astroblog — Home"
+  description="Blog modern berbasis Astro untuk berbagi insight frontend, UI/UX, dan web development."
+>
+  <section class="border-b border-border/70">
+    <div class="mx-auto w-full max-w-6xl px-4 py-16 md:px-6 md:py-24">
+      <p class="mb-3 text-xs tracking-wide text-primary uppercase">Astro + Tailwind + shadcn</p>
+      <h1 class="max-w-3xl text-3xl leading-tight font-semibold tracking-tight text-foreground md:text-5xl">
+        Bangun blog yang cepat, rapi, dan nyaman dibaca.
+      </h1>
+      <p class="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+        Tempat berbagi catatan teknis tentang frontend, desain sistem UI, dan praktik membangun produk
+        digital dengan pengalaman membaca yang bersih.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href="/blog">
+          <Button className="rounded-none">Lihat Semua Artikel</Button>
+        </a>
+        <a
+          href="#featured"
+          class="inline-flex h-8 items-center border border-border px-3 text-xs font-medium text-foreground hover:bg-muted"
+        >
+          Jelajahi Highlight
+        </a>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section id="featured" class="mx-auto w-full max-w-6xl px-4 py-12 md:px-6 md:py-16">
+    <div class="mb-6 flex items-center justify-between gap-3">
+      <h2 class="text-lg font-semibold tracking-tight text-foreground md:text-xl">Artikel Terbaru</h2>
+      <a href="/blog" class="text-xs font-medium text-primary hover:underline">Lihat semua</a>
+    </div>
+
+    {
+      featuredPosts.length > 0 ? (
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {featuredPosts.map((post) => <PostCard post={post} />)}
+        </div>
+      ) : (
+        <div class="border border-border bg-card p-6 text-sm text-muted-foreground">
+          Belum ada artikel. Tambahkan konten melalui Sanity Studio.
+        </div>
+      )
+    }
+  </section>
+
+  <section class="border-y border-border/70 bg-muted/20">
+    <div class="mx-auto grid w-full max-w-6xl gap-4 px-4 py-12 md:grid-cols-3 md:px-6 md:py-14">
+      <article class="border border-border bg-card p-5">
+        <p class="text-xs font-medium text-primary">01</p>
+        <h3 class="mt-2 text-sm font-semibold text-foreground">Konten terstruktur</h3>
+        <p class="mt-2 text-xs leading-relaxed text-muted-foreground">
+          Format artikel konsisten untuk membantu pembaca menangkap poin penting lebih cepat.
+        </p>
+      </article>
+      <article class="border border-border bg-card p-5">
+        <p class="text-xs font-medium text-primary">02</p>
+        <h3 class="mt-2 text-sm font-semibold text-foreground">Desain token-based</h3>
+        <p class="mt-2 text-xs leading-relaxed text-muted-foreground">
+          Tampilan tetap seragam karena warna dan komponen berbasis semantic tokens.
+        </p>
+      </article>
+      <article class="border border-border bg-card p-5">
+        <p class="text-xs font-medium text-primary">03</p>
+        <h3 class="mt-2 text-sm font-semibold text-foreground">Performa cepat</h3>
+        <p class="mt-2 text-xs leading-relaxed text-muted-foreground">
+          Pendekatan statis Astro menjaga loading tetap ringan dan responsif.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-6xl px-4 py-12 md:px-6 md:py-16">
+    <div class="border border-border bg-card p-6 md:flex md:items-center md:justify-between md:gap-6 md:p-8">
+      <div>
+        <p class="text-xs tracking-wide text-primary uppercase">Stay Updated</p>
+        <h2 class="mt-2 text-xl font-semibold tracking-tight text-foreground">Ikuti update artikel terbaru</h2>
+        <p class="mt-2 text-sm text-muted-foreground">
+          Dapatkan rangkuman insight baru seputar frontend dan product engineering.
+        </p>
+      </div>
+      <a href="mailto:hello@example.com" class="mt-5 inline-flex md:mt-0">
+        <Button className="rounded-none">Hubungi Kami</Button>
+      </a>
+    </div>
+  </section>
 </Layout>

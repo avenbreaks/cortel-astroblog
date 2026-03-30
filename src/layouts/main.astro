@@ -1,15 +1,36 @@
 ---
+import Header from "@/components/site/Header.astro"
+import Footer from "@/components/site/Footer.astro"
+import AgentationToolbar from "@/components/site/AgentationToolbar"
 import "@/styles/global.css"
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = "Astroblog",
+  description = "Blog modern dengan Astro untuk berbagi insight frontend dan web development.",
+} = Astro.props
 ---
 
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Astro App</title>
+    <meta name="description" content={description} />
+    <title>{title}</title>
   </head>
-  <body>
-    <slot />
+  <body class="min-h-svh bg-background text-foreground">
+    <div class="flex min-h-svh flex-col">
+      <Header />
+      <main class="flex-1">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+    {import.meta.env.DEV && <AgentationToolbar client:load />}
   </body>
 </html>
