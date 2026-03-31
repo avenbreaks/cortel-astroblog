@@ -35,6 +35,8 @@ export interface BlogPostSummary {
   pubDate: Date
   tags: string[]
   readingMinutes: number
+  coverImageUrl?: string
+  coverImageAlt?: string
 }
 
 export interface BlogPostDetail extends BlogPostSummary {

@@ -12,7 +12,7 @@ const navLinks = [
   <div class="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 md:px-6">
     <a href="/" class="text-sm font-semibold tracking-tight text-foreground">cortel blog</a>
 
-    <nav class="flex items-center gap-1 rounded-none border border-border/70 bg-card p-1">
+    <nav class="flex items-center gap-1 border border-border/70 bg-card p-1">
       {
         navLinks.map((link) => {
           const isActive =
@@ -23,7 +23,7 @@ const navLinks = [
           return (
             <a
               href={link.href}
-              class={`px-3 py-1.5 text-xs transition-colors ${
+              class={`inline-flex h-8 items-center px-3 text-xs font-medium transition-colors ${
                 isActive
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -36,14 +36,6 @@ const navLinks = [
       }
     </nav>
 
-    <div class="flex items-center gap-2">
-      <ThemeToggle client:load />
-      <a
-        href="/blog"
-        class="inline-flex h-8 items-center border border-border bg-secondary px-3 text-xs font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
-      >
-        Baca Artikel
-      </a>
-    </div>
+    <ThemeToggle client:load />
   </div>
 </header>

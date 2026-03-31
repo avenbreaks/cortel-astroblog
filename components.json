@@ -12,6 +12,8 @@
   },
   "iconLibrary": "phosphor",
   "rtl": true,
+  "menuColor": "default-translucent",
+  "menuAccent": "subtle",
   "aliases": {
     "components": "@/components",
     "utils": "@/lib/utils",
@@ -19,7 +21,10 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
-  "menuColor": "default-translucent",
-  "menuAccent": "subtle",
-  "registries": {}
+  "registries": {
+    "@smoothui": "https://smoothui.dev/r/{name}.json",
+    "@cult-ui": "https://cult-ui.com/r/{name}.json",
+    "@reui": "https://reui.io/r/{style}/{name}.json",
+    "@magicui": "https://magicui.design/r/{name}"
+  }
 }

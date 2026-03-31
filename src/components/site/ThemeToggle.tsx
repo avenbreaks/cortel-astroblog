@@ -1,3 +1,4 @@
+import { Moon, Sun } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
 
 function getInitialTheme() {
@@ -27,10 +28,10 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label="Toggle dark mode"
-      className="inline-flex h-8 items-center border border-border bg-background px-3 text-xs font-medium text-foreground transition-colors hover:bg-muted"
+      aria-label={theme === "dark" ? "Aktifkan light mode" : "Aktifkan dark mode"}
+      className="inline-flex size-8 items-center justify-center border border-border bg-background text-foreground transition-colors hover:bg-muted"
     >
-      {theme === "dark" ? "Light" : "Dark"}
+      {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
     </button>
   )
 }

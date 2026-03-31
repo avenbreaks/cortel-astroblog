@@ -64,6 +64,7 @@ export const blockContentType = defineType({
               { title: "JSON", value: "json" },
               { title: "Bash", value: "bash" },
               { title: "Markdown", value: "markdown" },
+              { title: "Mermaid", value: "mermaid" },
             ],
           },
         }),

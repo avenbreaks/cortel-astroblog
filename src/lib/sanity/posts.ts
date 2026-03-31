@@ -1,3 +1,5 @@
+import { createImageUrlBuilder } from "@sanity/image-url"
+
 import { sanityClient } from "@/lib/sanity/client"
 import {
   allPublishedPostsQuery,
@@ -5,6 +7,8 @@ import {
   publishedPostSlugsQuery,
 } from "@/lib/sanity/queries"
 import type { BlogPostDetail, BlogPostSummary, SanityPostDocument } from "@/lib/sanity/types"
+
+const builder = createImageUrlBuilder(sanityClient)
 
 function mapToSummary(post: SanityPostDocument): BlogPostSummary {
   return {
@@ -15,6 +19,8 @@ function mapToSummary(post: SanityPostDocument): BlogPostSummary {
     pubDate: new Date(post.publishedAt),
     tags: post.tags ?? [],
     readingMinutes: post.readingMinutes ?? 5,
+    coverImageUrl: post.coverImage?.asset ? builder.image(post.coverImage).width(960).quality(80).url() : undefined,
+    coverImageAlt: post.coverImage?.alt || post.title,
   }
 }
 

@@ -12,6 +12,9 @@ export default defineConfig({
   adapter: vercel(),
   vite: {
     plugins: [tailwindcss()],
+    ssr: {
+      noExternal: ["react-tweet"],
+    },
   },
   integrations: [
     sanity({
