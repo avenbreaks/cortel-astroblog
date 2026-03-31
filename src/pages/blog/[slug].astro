@@ -1,20 +1,12 @@
 ---
 import Layout from "@/layouts/main.astro"
 import PostMeta from "@/components/blog/PostMeta.astro"
-import { getPostBySlug, getPostSlugs } from "@/lib/sanity/posts"
+import { getPostBySlug } from "@/lib/sanity/posts"
 import { portableTextToHtml } from "@/lib/sanity/portableText"
 import TweetEmbeds from "@/components/blog/TweetEmbeds"
 import AgentAvatar from "@/components/smoothui/agent-avatar"
 
-export const prerender = true
-
-export async function getStaticPaths() {
-  const slugs = await getPostSlugs()
-
-  return slugs.map((slug) => ({
-    params: { slug },
-  }))
-}
+export const prerender = false
 
 const { slug } = Astro.params
 
