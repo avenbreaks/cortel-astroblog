@@ -1,11 +1,13 @@
 ---
 import ThemeToggle from "@/components/site/ThemeToggle"
+import HeaderNavMenu from "@/components/site/HeaderNavMenu"
 
 const pathname = Astro.url.pathname
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/blog", label: "Blog" },
 ]
+
 ---
 
 <header class="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur">
@@ -34,6 +36,8 @@ const navLinks = [
           )
         })
       }
+
+      <HeaderNavMenu client:load />
     </nav>
 
     <ThemeToggle client:load />

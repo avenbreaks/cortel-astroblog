@@ -4,7 +4,8 @@ import PostCard from "@/components/blog/PostCard.astro"
 import ContactModal from "@/components/site/ContactModal"
 import { getFeaturedPosts } from "@/lib/sanity/posts"
 
-const featuredPosts = await getFeaturedPosts(3)
+const FEATURED_COUNT = 6
+const featuredPosts = await getFeaturedPosts(FEATURED_COUNT)
 ---
 
 <Layout
@@ -29,7 +30,7 @@ const featuredPosts = await getFeaturedPosts(3)
         </div>
       ) : (
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: 3 }).map(() => (
+          {Array.from({ length: FEATURED_COUNT }).map(() => (
             <article class="border border-border bg-card p-5">
               <div class="h-3 w-24 animate-pulse bg-muted" />
               <div class="mt-4 h-4 w-4/5 animate-pulse bg-muted" />

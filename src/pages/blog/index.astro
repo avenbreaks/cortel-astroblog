@@ -4,6 +4,10 @@ import PostCard from "@/components/blog/PostCard.astro"
 import { getAllPublishedPosts } from "@/lib/sanity/posts"
 
 const posts = await getAllPublishedPosts()
+const selectedTag = Astro.url.searchParams.get("tag")?.trim().toLowerCase() ?? ""
+const filteredPosts = selectedTag
+  ? posts.filter((post) => post.tags.some((tag) => tag.toLowerCase() === selectedTag))
+  : posts
 ---
 
 <Layout
@@ -17,18 +21,30 @@ const posts = await getAllPublishedPosts()
       <p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
         Kumpulan catatan teknis dan praktik UI/UX yang bisa langsung diterapkan.
       </p>
+      {
+        selectedTag && (
+          <div class="mt-4 inline-flex items-center gap-2 border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground">
+            <span>Filter aktif: #{selectedTag}</span>
+            <a href="/blog" class="text-primary hover:underline">
+              Reset
+            </a>
+          </div>
+        )
+      }
     </div>
   </section>
 
   <section class="mx-auto w-full max-w-6xl px-4 py-10 md:px-6 md:py-14">
     {
-      posts.length > 0 ? (
+      filteredPosts.length > 0 ? (
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => <PostCard post={post} />)}
+          {filteredPosts.map((post) => <PostCard post={post} />)}
         </div>
       ) : (
         <div class="border border-border bg-card p-6 text-sm text-muted-foreground">
-          Belum ada artikel yang dipublikasikan.
+          {selectedTag
+            ? `Belum ada artikel untuk tag #${selectedTag}.`
+            : "Belum ada artikel yang dipublikasikan."}
         </div>
       )
     }
